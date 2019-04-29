@@ -1,7 +1,5 @@
 package dev.otaviokr.qotd.client.socket;
 
-import org.junit.jupiter.api.Test;
-
 public class ClientSocketWrapperTest {
 
     // This class is not tested and the reason are discussed here:

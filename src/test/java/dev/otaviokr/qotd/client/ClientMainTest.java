@@ -2,12 +2,10 @@ package dev.otaviokr.qotd.client;
 
 import dev.otaviokr.qotd.client.exception.ClientSocketWrapperException;
 import dev.otaviokr.qotd.client.socket.ClientSocketWrapper;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.mockito.MockitoAnnotations;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.io.IOException;

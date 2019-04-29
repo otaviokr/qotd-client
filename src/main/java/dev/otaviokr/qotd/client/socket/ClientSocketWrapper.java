@@ -46,7 +46,7 @@ public class ClientSocketWrapper implements IfSocketWrapper {
 
     @Override
     public void connect(String hostname, int port) throws ClientSocketWrapperException {
-        if (socket.isConnected()) {
+        if (this.socket != null && this.socket.isConnected()) {
             String msg = "Socket already connected to %s:%d . You must close it before attempting a new connection.";
             throw new ClientSocketWrapperException(String.format(msg, hostname, port));
         }
