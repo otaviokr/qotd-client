@@ -28,6 +28,7 @@ public class ClientMain {
         if (null != inputFile) {
             try {
                 props.load(inputFile);
+                socket = new ClientSocketWrapper(getServerHostname(), getServerPort());
             } catch (IOException e) {
                 throw new QotdClientException("Error while loading properties from file", e);
             }

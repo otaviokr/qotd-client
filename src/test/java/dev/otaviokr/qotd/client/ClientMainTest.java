@@ -1,6 +1,7 @@
 package dev.otaviokr.qotd.client;
 
 import dev.otaviokr.qotd.client.exception.ClientSocketWrapperException;
+import dev.otaviokr.qotd.client.exception.QotdClientException;
 import dev.otaviokr.qotd.client.socket.ClientSocketWrapper;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -31,12 +32,14 @@ public class ClientMainTest {
 
     @BeforeEach
     public void setup() {
-        initMocks(ClientMainTest.class);
+        initMocks(this);
     }
 
     @Test
     public void testClose() throws ClientSocketWrapperException {
         doNothing().when(clientSocketWrapper).close();
+
+        clientMain.setSocket(clientSocketWrapper);
         clientMain.close();
     }
 
@@ -74,7 +77,8 @@ public class ClientMainTest {
     @Test
     public void testReadLine() throws ClientSocketWrapperException {
         String expected = "This is a test";
-        doReturn(expected).when(clientSocketWrapper).readLineFromServer();
+        //doReturn(expected).when(clientSocketWrapper).readLineFromServer();
+        when(clientSocketWrapper.readLineFromServer()).thenReturn(expected);
 
         String actual = clientMain.readLine();
         assertEquals(expected, actual);
