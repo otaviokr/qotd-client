@@ -33,23 +33,32 @@ public class ClientMainTest {
 
     @Test
     public void testClose() throws ClientSocketWrapperException {
-        ClientMain clientMain = mock(ClientMain.class);
-
+        doNothing().when(clientSocketWrapper).close();
         clientMain.close();
     }
 
     @Test
     public void testConnect() throws ClientSocketWrapperException {
-        ClientMain clientMain = mock(ClientMain.class);
-
+        doReturn(clientMain.getServerHostname()).when(clientSocketWrapper).getHostname();
+        doReturn(clientMain.getServerPort()).when(clientSocketWrapper).getPort();
         clientMain.connect();
     }
 
     @Test
     public void testGetServerHostname() {
-        ClientMain clientMain = mock(ClientMain.class);
 
-        clientMain.getServerHostname();
+        InputStream inputFile = this.getClass().getClassLoader().getResourceAsStream("qotd-client-test.properties");
+        Properties props = new Properties();
+        try {
+            props.load(inputFile);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        String expected = props.getProperty("server.hostname", "NOT_FOUND");
+        //doReturn(hostname).when(clientSocketWrapper).getHostname();
+        String actual = clientMain.getServerHostname();
+        assertEquals(expected, actual);
     }
 
     @Test
@@ -63,8 +72,6 @@ public class ClientMainTest {
     public void testReadLine() throws ClientSocketWrapperException {
         String expected = "This is a test";
         doReturn(expected).when(clientSocketWrapper).readLineFromServer();
-        //clientMain = mock(ClientMain.class);
-
 
         String actual = clientMain.readLine();
         assertEquals(expected, actual);
