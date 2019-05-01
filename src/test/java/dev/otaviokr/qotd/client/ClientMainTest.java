@@ -2,6 +2,7 @@ package dev.otaviokr.qotd.client;
 
 import dev.otaviokr.qotd.client.exception.ClientSocketWrapperException;
 import dev.otaviokr.qotd.client.socket.ClientSocketWrapper;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -14,6 +15,7 @@ import java.util.Properties;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.*;
+import static org.mockito.MockitoAnnotations.*;
 
 @ExtendWith(MockitoExtension.class)
 public class ClientMainTest {
@@ -23,6 +25,11 @@ public class ClientMainTest {
 
     @Mock
     private ClientSocketWrapper clientSocketWrapper;
+
+    @BeforeAll
+    static public void setup() {
+        initMocks(ClientMainTest.class);
+    }
 
     @Test
     public void testClose() throws ClientSocketWrapperException {
