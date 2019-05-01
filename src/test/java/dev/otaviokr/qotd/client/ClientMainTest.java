@@ -2,7 +2,7 @@ package dev.otaviokr.qotd.client;
 
 import dev.otaviokr.qotd.client.exception.ClientSocketWrapperException;
 import dev.otaviokr.qotd.client.socket.ClientSocketWrapper;
-import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -29,8 +29,8 @@ public class ClientMainTest {
     @Mock
     private ClientSocketWrapper clientSocketWrapper;
 
-    @BeforeAll
-    static public void setup() {
+    @BeforeEach
+    public void setup() {
         initMocks(ClientMainTest.class);
     }
 
